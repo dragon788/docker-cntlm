@@ -3,10 +3,10 @@
 #usage docker run --rm -t -i --entrypoint="get_ntlm.sh" btrepp/cntlm
 
 if [ $# -ne 2 ]; then
-	echo "Usage: enter username followed by proxy server adddress"
+	echo "Usage: enter username and domain"
         exit 1
 fi
 echo "When Prompted type your password"
-exec /usr/sbin/cntlm -M http://docker.io \
+exec /usr/sbin/cntlm -H -a NTLMv2 \
 	-u $1 \
-	$2
+	-d $2
